@@ -39,9 +39,14 @@ spec:
         - name: ZOOKEEPER_SERVER_1
           value: 'zookeeper'
         volumeMounts:
-        - name: zookeeper-persistent-storage
+        - name: zookeeper-data-persistent-storage
           mountPath: /var/lib/zookeeper/data
+        - name: zookeeper-log-persistent-storage
+          mountPath: /var/lib/zookeeper/log
       volumes:
-      - name: zookeeper-persistent-storage
+      - name: zookeeper-data-persistent-storage
         persistentVolumeClaim:
-          claimName: zookeeper-pv-data
+          claimName: zookeeper-data-pv-data
+      - name: zookeeper-log-persistent-storage
+        persistentVolumeClaim:
+          claimName: zookeeper-log-pv-data

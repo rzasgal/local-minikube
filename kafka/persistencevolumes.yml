@@ -16,17 +16,32 @@ spec:
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: zookeeper-pv-volume
+  name: zookeeper-data-pv-volume
   labels:
     type: local
 spec:
   storageClassName: manual
   capacity:
-    storage: 10Gi
+    storage: 5Gi
   accessModes:
     - ReadWriteOnce
   hostPath:
-    path: "/var/lib/minikube/data/zookeeper"
+    path: "/var/lib/minikube/data/zookeeper/data"
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: zookeeper-log-pv-volume
+  labels:
+    type: local
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 5Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/var/lib/minikube/data/zookeeper/log"
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -43,11 +58,23 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: zookeeper-pv-data
+  name: zookeeper-data-pv-data
 spec:
   storageClassName: manual
   accessModes:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 10Gi
+      storage: 5Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: zookeeper-log-pv-data
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
