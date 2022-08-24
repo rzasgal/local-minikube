@@ -26,9 +26,8 @@ spec:
         app: postgresql
     spec:
       containers:
-      - image: postgres:latest
+      - image: postgres:14.5
         name: postgresql
-        imagePullPolicy: Never
         env:
           # Use secret in prod use cases
         - name: POSTGRES_PASSWORD

@@ -26,9 +26,8 @@ spec:
         app: mysql
     spec:
       containers:
-      - image: mysql:5.7-usb
+      - image: mysql:5.7
         name: mysql
-        imagePullPolicy: Never
         env:
           # Use secret in prod use cases
         - name: MYSQL_ROOT_PASSWORD
