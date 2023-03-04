@@ -36,10 +36,11 @@ spec:
       containers:
       - image: elasticsearch:7.16.3
         name: elasticsearch
-        imagePullPolicy: Never
         env:
         - name: 'discovery.type'
           value: 'single-node'
+        - name: 'ES_JAVA_OPTS'
+          value: '-Xms2g -Xmx2g'
         ports:
         - containerPort: 9200
           name: elasticsearch
