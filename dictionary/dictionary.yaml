@@ -26,13 +26,13 @@ spec:
         app: dictionary
     spec:
       containers:
-      - image: dictionary:latest
+      - image: dictionary:0.0.1-SNAPSHOT
         name: dictionary
-        imagePullPolicy: Never
         env:
-          # Use secret in prod use cases
         - name: SPRING_PROFILES_ACTIVE
-          value: kubernetes
+          value: localminikube
+        - name: SPRING_KAFKA_BOOTSTRAP_SERVERS
+          value: kafka:9092
         ports:
         - containerPort: 8080
           name: dictionary

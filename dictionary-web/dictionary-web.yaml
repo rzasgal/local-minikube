@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: dictionary-web
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 3000
+  selector:
+    app: dictionary-web
+  clusterIP: 10.97.190.91
+---
+apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+kind: Deployment
+metadata:
+  name: dictionary-web
+spec:
+  selector:
+    matchLabels:
+      app: dictionary-web
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: dictionary-web
+    spec:
+      containers:
+      - image: dictionary-web:0.0.1-SNAPSHOT
+        name: dictionary-web
+        ports:
+        - containerPort: 3000
+          name: dictionary-web
